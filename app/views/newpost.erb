@@ -1,0 +1,15 @@
+<div class='container'>
+	<form method='post' action='/newpost'>
+		<label for='author'>Your name: </label>
+		<%= @post.author if @post %>
+		<input type='text' name='author'><br>
+		<label for='title'>Title of your post: </label>
+		<input type='text' name='title'><%= @post.title if @post %></input><br>
+		<label for='content'>Your post: </label>
+		<textarea cols='50' name='content'><%= @post.content if @post %></textarea><br>
+		<label for='tags'>Tags: </label>
+		<input type='text' name='tags'><%= @post.tags.map { |tag| tag.phrase }.join(', ') if @post %></input><br>
+		<input type='submit'>
+	</form>
+</div>
+

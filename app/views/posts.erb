@@ -1,0 +1,6 @@
+<div class='container'>
+	<% Post.find_each do |post| %>
+		<% @post = post %>
+		<%= erb :post %>
+	<% end %>
+</div>
