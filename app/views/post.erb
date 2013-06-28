@@ -6,7 +6,11 @@
 	<section>
 		<%= @post.content %>
 	</section>
-	<p>Tags: <%= @post.tags.map { |tag| tag.phrase }.join(', ') %></p>
+	<p>Tags: 
+	<% @post.tags.each do |tag| %>
+	<a href="/tags/<%= u(tag.phrase) %>"><%= tag.phrase %></a>
+	<% end %>
+	</p>
 	<form method='post' action='/editpost'>
 		<button name='post_id' type='submit' value="<%= @post.id %>">Edit This Post</button>
 	</form>

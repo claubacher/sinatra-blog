@@ -5,7 +5,7 @@ get '/tags/:tag_phrase' do
 
   Post.all.each do |post|
     post.tags.each do |tag|
-      if tag.phrase == @tag.phrase
+      if tag == @tag && !@posts.include?(post)
         @posts << post
       end
     end
