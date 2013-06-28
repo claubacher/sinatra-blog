@@ -1,3 +1,3 @@
 get '/tags/:tag_id' do
-  # Show me all posts with a given tag
+  @tag = Tag.find_by_id(params[:tag_id])
 end

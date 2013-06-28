@@ -1,14 +1,27 @@
 <div class='container'>
 	<form method='post' action='/newpost'>
+		<% if @post %>
+			<% id = @post.id %> 
+			<% author = @post.author.name %>
+			<% title = @post.title %>
+			<% content = @post.content %>
+			<% tags = @post.tags.map { |tag| tag.phrase }.join(', ') %>
+		<% end %>
+
+		<input type='hidden' name='id' value="<%= id %>">
+
 		<label for='author'>Your name: </label>
-		<%= @post.author if @post %>
-		<input type='text' name='author'><br>
+		<input type='text' name='author' value="<%= author %>"><br>
+
 		<label for='title'>Title of your post: </label>
-		<input type='text' name='title'><%= @post.title if @post %></input><br>
+		<input type='text' name='title' value="<%= title %>"><br>
+		
 		<label for='content'>Your post: </label>
-		<textarea cols='50' name='content'><%= @post.content if @post %></textarea><br>
+		<textarea cols='50' name='content'><%= content %></textarea><br>
+		
 		<label for='tags'>Tags: </label>
-		<input type='text' name='tags'><%= @post.tags.map { |tag| tag.phrase }.join(', ') if @post %></input><br>
+		<input type='text' name='tags' value="<%= tags %>"><br>
+		
 		<input type='submit'>
 	</form>
 </div>

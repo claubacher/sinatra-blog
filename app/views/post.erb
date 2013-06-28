@@ -1,6 +1,6 @@
 <div class='container'>
 	<h1><%= @post.title %></h1>
-	<p><%= @post.author %></p>
+	<p>Author: <%= @post.author.name %></p>
 	<p>Created at: <%= @post.created_at %></p>
 	<p>Updated at: <%= @post.updated_at %></p>
 	<section>
@@ -8,7 +8,10 @@
 	</section>
 	<p>Tags: <%= @post.tags.map { |tag| tag.phrase }.join(', ') %></p>
 	<form method='post' action='/editpost'>
-		<input type='hidden' name='post_id' value="<%= @post.id %>">
-		<input type='submit' value='Edit this post'>
+		<button name='post_id' type='submit' value="<%= @post.id %>">Edit This Post</button>
+	</form>
+	<form method='post' action='/deletepost'>
+		<button name='post_id' type='submit' value="<%= @post.id %>">Delete This Post</button>
 	</form>
 </div>
+
