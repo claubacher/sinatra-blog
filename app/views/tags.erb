@@ -1,7 +1,6 @@
 <div class='container'>
-	<% Post.where(tags.include do |post| %>
+	<% @posts.each do |post| %>
 		<% @post = post %>
 		<%= erb :post %>
 	<% end %>
 </div>
-

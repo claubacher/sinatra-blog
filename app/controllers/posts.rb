@@ -11,7 +11,8 @@ post '/newpost' do
   post = Post.find_or_create_by_id(params[:id])
   
   params[:tags].split(', ').each do |phrase|
-    post.tags << Tag.find_or_create_by_phrase(phrase)
+    tag = Tag.find_or_create_by_phrase(phrase)
+    post.tags << tag unless post.tags.include?(tag)
   end
 
   author = Author.find_or_create_by_name(params[:author])

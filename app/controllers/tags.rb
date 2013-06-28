@@ -1,3 +1,15 @@
-get '/tags/:tag_id' do
-  @tag = Tag.find_by_id(params[:tag_id])
+get '/tags/:tag_phrase' do
+  @tag = Tag.find_by_phrase(params[:tag_phrase])
+
+  @posts = []
+
+  Post.all.each do |post|
+    post.tags.each do |tag|
+      if tag.phrase == @tag.phrase
+        @posts << post
+      end
+    end
+  end
+
+  erb :tags
 end
