@@ -1,6 +1,23 @@
-<div class='container'>
-	<% Post.find_each do |post| %>
-		<% @post = post %>
-		<%= erb :post %>
-	<% end %>
-</div>
+<% unless @posts == nil || @posts.empty? %>
+  <div class='container'>
+    <% @posts.each do |post| %>
+    <div class='container'>
+      <h1><%= post.title %></h1>
+      <p>Author: <%= post.author.name %></p>
+      <p>Created at: <%= post.created_at %></p>
+      <p>Updated at: <%= post.updated_at %></p>
+      <p><a href="/posts/<%= post.id %>">View this post on its own page</a></p>
+      <section>
+        <%= post.content %>
+      </section>
+      <p>Tags: 
+        <% post.tags.each do |tag| %>
+        <a href="/tags/<%= u(tag.phrase) %>"><%= tag.phrase %></a>
+        <% end %>
+      </p>
+      <a href="/posts/<%= post.id %>/update">Edit This Post</a>
+      <a href="/posts/<%= post.id %>/delete">Delete This Post</a>
+    </div>
+    <% end %>
+  </div>
+<% end %>

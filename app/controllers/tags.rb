@@ -2,14 +2,11 @@ get '/tags/:tag_phrase' do
   @tag = Tag.find_by_phrase(params[:tag_phrase])
 
   @posts = []
-
-  Post.all.each do |post|
-    post.tags.each do |tag|
-      if tag == @tag && !@posts.include?(post)
-        @posts << post
-      end
+  Post.order('updated_at').reverse_order.each do |post|
+    if post.tags.include?(@tag) && !@posts.include?(post)
+      @posts << post
     end
   end
 
-  erb :tags
+  erb :posts
 end

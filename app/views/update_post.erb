@@ -1,0 +1,28 @@
+<% if @post %>
+	<% id = @post.id %> 
+	<% title = @post.title %>
+	<% content = @post.content %>
+	<% tags = @post.tags.map { |tag| tag.phrase }.join(', ') %>
+	<% action = '/posts/' + id.to_s + '/update' %>
+<% else %>
+	<% action = '/posts/new' %>
+<% end %>
+
+<div class='container'>
+	<form method='post' action="<%= action %>" >
+		<% author = Author.find_by_id(session[:user_id]) %>
+
+		<input type='hidden' name='id' value="<%= id %>">
+
+		<label for='title'>Title of your post: </label>
+		<input type='text' name='title' value="<%= title %>"><br>
+		
+		<label for='content'>Your post: </label>
+		<textarea cols='50' name='content'><%= content %></textarea><br>
+		
+		<label for='tags'>Tags: </label>
+		<input type='text' name='tags' value="<%= tags %>"><br>
+		
+		<input type='submit'>
+	</form>
+</div>

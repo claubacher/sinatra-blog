@@ -1,39 +1,47 @@
 include ERB::Util
 
-get '/posts/:post_id' do
-  @post = Post.find_by_id(params[:post_id]) 
-  erb :post
+get '/posts/new' do
+  erb :update_post
 end
 
-get '/newpost' do
-  erb :newpost
-end
+post '/posts/new' do
+  post = Post.new
 
-post '/newpost' do
-  post = Post.find_or_create_by_id(params[:id])
+  post.title   = params[:title]
+  post.content = params[:content]
   
-  params[:tags].split(', ').each do |phrase|
-    tag = Tag.find_or_create_by_phrase(phrase)
-    post.tags << tag unless post.tags.include?(tag)
-  end
+  update_tags(post)
 
-  author = Author.find_or_create_by_name(params[:author])
-  
+  author = Author.find_by_id(session[:user_id])
   post.author_id = author.id
-  post.title     = params[:title]
-  post.content   = params[:content]
+
   post.save
   
   redirect '/'
 end
 
-post '/editpost' do
-  @post = Post.find_by_id(params[:post_id])
-  puts @post.inspect
-  erb :newpost
+get '/posts/:post_id' do
+  @posts = [Post.find_by_id(params[:post_id])]
+  erb :posts
 end
 
-post '/deletepost' do
+get '/posts/:post_id/update' do
+  find_post_by_id
+  check_author
+  erb :update_post
+end
+
+post '/posts/:post_id/update' do
+  post = Post.find_by_id(params[:id].to_i)
+  post.update_attributes(:title => params[:title], :content => params[:content])  
+  update_tags(post)
+  post.save
+  redirect '/'
+end
+
+get '/posts/:post_id/delete' do
+  find_post_by_id
+  check_author
   Post.destroy(params[:post_id])
   redirect '/'
 end

@@ -18,6 +18,22 @@
   <title></title>
 </head>
 <body>
+  <div class="container">
+    <h1><a href='/'>Bob Loblaw's Law Blog</a></h1>
+  </div>
+  <% unless session[:user_id] == nil %>
+    <div class="container">
+      <a href="/user/logout">Log Out</a> 
+    </div>
+    <div class="container">
+      <p>Currently logged in as: <%= Author.find_by_id(session[:user_id]).name %></p> 
+    </div>
+  <% end %>
+  <% unless session[:errors] == nil %> 
+    <div class="container">
+      <p><%= session[:errors] %></p>
+    </div>
+  <% end %>
   <%= yield %>
 </body>
 </html>
