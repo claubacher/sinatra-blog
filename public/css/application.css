@@ -2,8 +2,96 @@
   margin: 20px auto;
   width: 600px;
   padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  /*border: 1px dotted black;
+  border-radius: 1.5em;*/
 }
-th {
-  text-align: left;
+nav {
+  width: 100%;
+  position: fixed;
+}
+.heading {
+  background-color: #ff6201;
+  width: 100%;
+}
+.heading h1{
+  margin: 0;
+}
+.heading a {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 2.2em;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: .1em .3em .1em .3em;
+}
+.log {
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+  background-color: #ccaa88;
+  color: #444;
+  padding: 8px 24px;
+}
+.log span {
+  font-weight: normal;
+  text-decoration: none;
+  padding: 0 8px;
+}
+.log a {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0 2px;
+}
+.log a:hover { 
+  text-decoration: underline;
+  color: #ff6201;
+}
+.log a:visited { 
+  text-decoration: none;
+  color: #fff;
+}
+.content{
+  position: relative;
+  top: 148px;
+}
+.new_post {
+  float: left;
+  padding: 22px;
+  position: fixed;
+  top: 172px;
+}
+.new_post a {
+  text-decoration: none;
+  color: #444;
+}
+.new_post div {
+  padding-bottom: 20px;
+  position: relative;
+}
+.new_post a:hover { 
+  text-decoration: underline;
+  color: #ff6201;
+}
+.new_post a:visited { 
+  text-decoration: none;
+  color: #444;
+}
+.post {
+  width: 520px;
+  margin: 10px 20px;
+  padding: 0px 20px;
+}
+.post h1 {
+  margin: 0px;
+  padding: 10px 0px;
+}
+.post p {
+  margin: 0px;
+  line-height: 1.5em;
+}
+.post section {
+  padding: 20px 0px;
+}
+.post .edit {
+  padding-bottom: 20px;
 }

@@ -1,5 +1,18 @@
-<div class="container">
-  <a href='/posts/new'>Make a new post</a>
+<div class="new_post">
+  <div>
+    <a href='/posts/new'>Make a new post</a>
+  </div>
+  <div>
+    Authors: <br>
+    <% Author.all.each do |author| %>
+      <a href="/authors/<%= author.name %>"><%= author.name %></a><br>
+    <% end %>
+  </div>
+    Tags: <br>
+    <% Tag.all.each do |tag| %>
+      <a href="/tags/<%= tag.phrase %>"><%= tag.phrase %></a><br>
+    <% end %>
+  </div>
 </div>
 
 <%= erb :posts %>

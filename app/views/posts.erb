@@ -1,9 +1,9 @@
 <% unless @posts == nil || @posts.empty? %>
   <div class='container'>
     <% @posts.each do |post| %>
-    <div class='container'>
+    <div class='container post'>
       <h1><%= post.title %></h1>
-      <p>Author: <%= post.author.name %></p>
+      <p>Author: <a href="/authors/<%= post.author.name %>"><%= post.author.name %></a></p>
       <p>Created at: <%= post.created_at %></p>
       <p>Updated at: <%= post.updated_at %></p>
       <p><a href="/posts/<%= post.id %>">View this post on its own page</a></p>
@@ -15,9 +15,12 @@
         <a href="/tags/<%= u(tag.phrase) %>"><%= tag.phrase %></a>
         <% end %>
       </p>
-      <a href="/posts/<%= post.id %>/update">Edit This Post</a>
-      <a href="/posts/<%= post.id %>/delete">Delete This Post</a>
+      <div class="edit">
+        <a href="/posts/<%= post.id %>/update">Edit This Post</a>
+        <a href="/posts/<%= post.id %>/delete">Delete This Post</a>
+      </div>
     </div>
     <% end %>
   </div>
+  <%= will_paginate @posts %>
 <% end %>

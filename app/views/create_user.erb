@@ -1,7 +1,11 @@
 <div class="container">
   <form action="/user/signup" method="post">
-    <input type="text" name="user[name]" placeholder="Username">
-    <input type="password" name="user[password]" placeholder="Password">
+    <label for="user[name]">Name: </label>
+    <input type="text" name="user[name]" placeholder="Username"><br>
+    <label for="user[email]">Email: </label>
+    <input type="text" name="user[email]" placeholder="Email"><br>
+    <label for="user[password]">Password: </label>
+    <input type="password" name="user[password]" placeholder="Password"><br>
     <input type="submit" value="Sign Up!">
   </form>
 </div>

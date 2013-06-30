@@ -1,5 +1,5 @@
 get '/' do
-  @posts = Post.order('updated_at').reverse_order
+  @posts = Post.order('updated_at').reverse_order.page(params[:page])
   if session[:user_id] == nil
     erb :login 
   else
@@ -9,7 +9,7 @@ end
 
 post '/user/login' do
   if Author.authenticate(params[:user])
-    author = Author.find_by_name(params[:user][:name])
+    author = Author.find_by_email(params[:user][:email])
     session[:user_id] = author.id
     session[:errors] = nil
     redirect '/'

@@ -1,12 +1,11 @@
-require 'bcrypt'
-
 class Author < ActiveRecord::Base
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true
+  validates :email, :presence => true, :uniqueness => true
 
   has_many :posts
 
   def self.authenticate(params)
-    user = Author.find_by_name(params[:name])
+    user = Author.find_by_email(params[:email])
     if user && user.password == params[:password]
       user
     else
